@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { Observable, of } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
+
 import { environment } from '../../environments/environment';
-import { AuthType, AuthDTO } from '@app/models/auth.model';
-import { Observable } from 'rxjs';
 import { User } from '@app/models/user.model';
+import { AuthType, AuthDTO } from '@app/models/auth.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,12 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   private auth(authType: AuthType, data: AuthDTO): Observable<User> {
-    return this.http.post<User>(`${this.api}/${authType}`, data);
+    return this.http.post<User>(`${this.api}/${authType}`, data).pipe(
+      mergeMap((user: User) => {
+        this.token = user.token;
+        return of(user);
+      })
+    );
   }
 
   login(data: AuthDTO): Observable<User> {
@@ -27,14 +34,14 @@ export class AuthService {
     return this.auth('register', data);
   }
 
-  whoami() {
-    return this.http.get(`${this.api}/whoami`, {
+  whoami(): Observable<User> {
+    return this.http.get<User>(`${this.api}/whoami`, {
       headers: { authorization: `Bearer ${this.token}` }
     });
   }
 
-  get token() {
-    return localStorage.getItem('idea-token');
+  get token(): string {
+    return localStorage.getItem('idea_token');
   }
 
   set token(val: string) {
