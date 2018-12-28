@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
-import { AuthType, AuthDTO } from '../models/auth';
+import { AuthType, AuthDTO } from '@app/models/auth.model';
 import { Observable } from 'rxjs';
-import { User } from '@app/models/user';
+import { User } from '@app/models/user.model';
 
 @Injectable({
   providedIn: 'root'

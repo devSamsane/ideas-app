@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { AuthService } from '@app/services/auth.service';
-import { User } from '@app/models/user';
-import { Idea, IdeaDTO } from '@app/models/idea';
+import { User } from '@app/models/user.model';
+import { Idea, IdeaDTO } from '@app/models/idea.model';
 
 @Injectable({
   providedIn: 'root'
