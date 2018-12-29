@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
 
+import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store, Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { mergeMap, catchError, map, tap } from 'rxjs/operators';
@@ -8,8 +8,7 @@ import { mergeMap, catchError, map, tap } from 'rxjs/operators';
 import { AppState } from '@app/features/user/state/index';
 import { ApiService } from '@app/services/api.service';
 import { LoadUsers, UserActions, LoadUsersSuccess } from '@app/features/user/state/user.action';
-import { AddError } from '@app/store/actions/errors.action';
-import { RemoveError } from '../../../store/actions/errors.action';
+import { AddError, RemoveError } from '@app/store/actions/errors.action';
 
 @Injectable()
 export class UserEffects {
