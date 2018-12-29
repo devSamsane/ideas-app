@@ -9,13 +9,14 @@ import { UIModule } from '@app/ui.module';
 import { IdeasComponent } from '@app/features/idea/ideas/ideas.component';
 import { ideaReducer } from '@app/features/idea/state/idea.reducer';
 import { IdeaEffects } from '@app/features/idea/state/idea.effects';
+import { IdeaComponent } from './ideas/idea/idea.component';
 
 const routes: Routes = [
   {path: '', component: IdeasComponent }
 ];
 
 @NgModule({
-  declarations: [IdeasComponent],
+  declarations: [IdeasComponent, IdeaComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

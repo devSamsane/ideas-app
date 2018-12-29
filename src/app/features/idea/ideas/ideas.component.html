@@ -1,3 +1,1 @@
-<p-card *ngFor="let idea of ideas | async">
-  {{idea.idea}}
-</p-card>
+<app-idea *ngFor="let idea of (ideas | async)" [idea]="idea"></app-idea>
