@@ -13,10 +13,14 @@ export class NavbarComponent implements OnInit {
       label: 'Home',
       routerLink: ['/'],
       icon: 'fa fa-home'
+    },
+    {
+      label: 'Users',
+      routerLink: ['/users']
     }
   ];
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
   }
