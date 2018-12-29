@@ -3,8 +3,9 @@ import { Store } from '@ngrx/store';
 
 import { MessageService } from 'primeng/components/common/messageservice';
 
-import { AppState } from './store/app-store.module';
-import { SetInitialUser } from './store/actions/auth.action';
+import { AppState } from '@app/store/app-store.module';
+import { SetInitialUser } from '@app/store/actions/auth.action';
+import { AuthService } from '@app/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +15,16 @@ import { SetInitialUser } from './store/actions/auth.action';
 export class AppComponent implements OnInit {
   title = 'ideas-app';
 
-  constructor(private store: Store<AppState>, private messageService: MessageService) {}
+  constructor(
+    private store: Store<AppState>,
+    private messageService: MessageService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
-    this.store.dispatch(new SetInitialUser());
+    if (this.authService.token) {
+      this.store.dispatch(new SetInitialUser());
+    }
     this.store
       .select((state: AppState) => state.error)
       .subscribe(val => this.showError(val.error));
