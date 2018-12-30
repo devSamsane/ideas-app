@@ -6,6 +6,7 @@ export interface Idea {
   updated: Date;
   idea: string;
   description: string;
+  comments?: string;
   author: User;
   upvotes?: number;
   downvotes?: number;
