@@ -13,3 +13,11 @@ export const selectAllIdeas = createSelector(
     return Object.keys(ideas).map(id => ideas[id]);
   }
 );
+
+export const selectCurrentIdea = createSelector(
+  selectIdeaState,
+  (ideaState: IdeaState) => {
+    const { ideas, selectedIdea } = ideaState;
+    return ideas[selectedIdea];
+  }
+);

@@ -50,8 +50,8 @@ export class ApiService {
     return this.request('GET', endpoint);
   }
 
-  createIdea(id: string, data: IdeaDTO): Observable<Idea> {
-    const endpoint = `ideas/${id}`;
+  createIdea(data: IdeaDTO): Observable<Idea> {
+    const endpoint = `ideas/`;
     return this.request('POST', endpoint, data);
   }
 
